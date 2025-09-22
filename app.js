@@ -9,7 +9,7 @@ const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
 
-
+//conexion con la base de datos
 mongoose
   .connect('mongodb://localhost/starter-code', {useNewUrlParser: true})
   .then(x => {
@@ -47,6 +47,13 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 const index = require('./routes/index');
 app.use('/', index);
+
+//HAY QUE IMPORTAR EL ROUTER 
+const celebritiesRoutes = require('./routes/celebrities');
+app.use('/celebrities', celebritiesRoutes); 
+
+const moviesRoutes = require('./routes/movies')
+app.use('/movies', moviesRoutes)
 
 
 module.exports = app;
